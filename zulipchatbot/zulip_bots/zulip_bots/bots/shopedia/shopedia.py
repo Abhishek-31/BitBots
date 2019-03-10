@@ -1,10 +1,12 @@
 import requests
+import re
 from typing import Dict, Any, Tuple, Union
 
 class SusiHandler(object):
     '''
-    Susi AI Bot
-    To create and know more of SUSI skills go to `https://skills.susi.ai/`
+    Shopedia
+    To create and know more of SUSI skills go to ``
+
     '''
 
     def usage(self) -> str:
@@ -20,10 +22,16 @@ class SusiHandler(object):
         if msg == 'help' or msg == '':
             bot_handler.send_reply(message, self.usage())
             return
-        reply = requests.get("https://api.susi.ai/susi/chat.json", params=dict(q=msg))
+        words = msg.split(' ')
+        query = words[len(words) - 1] 
+        query = query[:-1]   
+        reply = requests.post("https://shopedia.herokuapp.com/consumer/search", data={'itemName': query, 'latitude': '31', 'longitude': '76'})
         try:
-            answer = reply.json()['answers'][0]['actions'][0]['expression']
-        except Exception:
+            answer = reply.json()[0]['shopName'] + ' is nearby!'
+            # answer = reply.json()[0]['shopName']+ 'will find you a ' + query + '. It\'s just ' +reply.json()[0]['distance'] + 'kilometers away!'
+            # print(answer)
+        # except Exception:
+        except:
             answer = "I don't understand. Can you rephrase?"
         bot_handler.send_reply(message, answer)
 
