@@ -14,6 +14,6 @@ And it'll suggest you a shop which is nearby!
 ## Credits
 This is the the project made by Team BitBots.
 
-The commit history of the website project can be found here [SHOPEDIA](https://github.com/Abhishek-31/Shopedia). Complete project was made in these two days.
+The commit history of the website project can be found here [SHOPEDIA](https://github.com/Abhishek-31/Shopedia). Complete project was made in just these two days.
 
 The video and instructions could be provided as given in this repository.
